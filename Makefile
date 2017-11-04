@@ -1,9 +1,10 @@
 CFLAGS = -O3 -D__STDC_CONSTANT_MACROS
-LDFLAGS = -lswscale -lavdevice -lavformat -lavcodec -lswresample -lavutil -lpthread -lbz2 -lz -lc -lrt
-INSTALLED_DEPS = -Idependencies/include -Ldependencies/lib
+LDFLAGS = -lswscale -lavdevice -lavformat -lavcodec -lswresample -lavutil -lpthread -lbz2 -lz -lc -liconv -llzma
+INSTALLED_DEPS = -Idependencies/include -Ldependencies/lib -L/usr/local/lib
+FRAMEWORKS = -framework CoreMedia -framework AudioToolbox -framework CoreVideo -framework VideoToolbox -framework CoreFoundation -framework Security
 
 mpegflow: mpegflow.cpp
-	g++ $< -o $@ $(CFLAGS) $(LDFLAGS) $(INSTALLED_DEPS)
+	g++ $< -o $@ $(CFLAGS) $(LDFLAGS) $(INSTALLED_DEPS) $(FRAMEWORKS)
 
 vis: vis.cpp
 	g++ $< -o $@ $(CFLAGS) -lopencv_highgui -lopencv_videoio -lopencv_imgproc -lopencv_imgcodecs -lopencv_core -lpng $(LDFLAGS) $(INSTALLED_DEPS) 
