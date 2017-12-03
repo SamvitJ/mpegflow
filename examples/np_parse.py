@@ -8,7 +8,7 @@
 import numpy as np
 import argparse
 import sys, os
-import cPickle as pickle
+import pickle
 
 parser = argparse.ArgumentParser(description='Save motion vectors to numpy tensor.')
 parser.add_argument('--input', required=True, type=str,
@@ -48,6 +48,7 @@ for i in range(len(lines)):
     else:
         # adjust for zero-indexing in matrix
         row_ind -= 1
+    line = lines[i]
     row_data = map(float, line.strip().split('\t'))
     row = np.array(list(row_data))
     frame_data.append(row)
