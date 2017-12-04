@@ -1,6 +1,7 @@
 CFLAGS = -O3 -D__STDC_CONSTANT_MACROS
-LDFLAGS = -lswscale -lavdevice -lavformat -lavcodec -lswresample -lavutil -lpthread -lbz2 -lz -lc -lrt
-INSTALLED_DEPS = -Idependencies/include -Ldependencies/lib
+LDFLAGS = -lswscale -lavdevice -lavformat -lavcodec -lswresample -lavutil -lpthread -lbz2 -lz -lc -lrt \
+          -ldl -lfdk-aac -lmp3lame -lopus -lvorbis -lvorbisenc -lvpx -lx264 -lva -lva-drm -lva-x11 -lX11 -lvdpau -ltheoraenc -ltheoradec -lspeex -lgnutls -lxvidcore -lsoxr -lwavpack -lx265 -lopencore-amrnb -lopencore-amrwb
+INSTALLED_DEPS = -Idependencies/include -Ldependencies/lib -I/opt/ffmpeg/include -L/opt/ffmpeg/lib
 
 mpegflow: mpegflow.cpp
 	g++ $< -o $@ $(CFLAGS) $(LDFLAGS) $(INSTALLED_DEPS)
