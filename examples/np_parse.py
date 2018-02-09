@@ -53,6 +53,8 @@ for i in range(len(lines)):
     row = np.array(list(row_data))
     frame_data.append(row)
     prev_frame = frame_ind
+if frame_data != []:
+    data.append(np.array(frame_data))
 
 np_data = np.array(data)
 
